@@ -1,5 +1,6 @@
-import { Feather } from '@expo/vector-icons';
-import { StyleSheet, Text, View } from 'react-native';
+import { useThemeColor } from "@/hooks/useThemeColor";
+import { Feather } from "@expo/vector-icons";
+import { StyleSheet, Text, View } from "react-native";
 
 interface WeatherInfoItemProps {
   icon: keyof typeof Feather.glyphMap;
@@ -7,38 +8,42 @@ interface WeatherInfoItemProps {
   value: string;
 }
 
-export default function WeatherInfoItem({ icon, label, value }: WeatherInfoItemProps) {
+export default function WeatherInfoItem({
+  icon,
+  label,
+  value,
+}: WeatherInfoItemProps) {
+  const iconColor = useThemeColor({}, "iconColor");
+  const textColor = useThemeColor({}, "text");
+
   return (
     <View style={styles.item}>
-      <Feather name={icon} size={18} color="#fff" />
+      <Feather name={icon} size={18} color={iconColor} />
       <View style={styles.dataContainer}>
-        <Text style={styles.label}>{label}</Text>
-        <Text style={styles.value}>{value}</Text>
+        <Text style={[styles.label, { color: textColor }]}>{label}</Text>
+        <Text style={[styles.value, { color: textColor }]}>{value}</Text>
       </View>
-      
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   item: {
-    flexDirection: 'row',
-    width: '18%',
-    alignItems: 'center',
+    flexDirection: "row",
+    width: "18%",
+    alignItems: "center",
     marginBottom: 10,
   },
   dataContainer: {
     marginLeft: 8,
-    flexDirection: 'column',
+    flexDirection: "column",
   },
   label: {
-    color: '#fff',
     fontSize: 12,
     marginTop: 4,
   },
   value: {
-    color: '#fff',
     fontSize: 14,
-    fontWeight: '600',
+    fontWeight: "600",
   },
 });

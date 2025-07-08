@@ -1,15 +1,28 @@
+
 export const LightColors = {
-  background: '#b721ff',
   text: '#ffffff',
-  card: '#ffffff',
   border: '#cccccc',
+  activeText: '#FFD639',
+  searchBarBackgroundColor: '#ffffff30', // Semi-transparent white background
+  searchInputColor: '#fff', 
+  placeholderTextColor: '#ccc',
+  iconColor: '#fff', 
+  dividerColor: 'rgba(255,255,255,0.3)',
+  backgroundGradientStartColor: '#5B2EFF',
+  backgroundGradientEndColor: '#FF5CA8',
 };
 
 export const DarkColors = {
-  background: '#1a1a1a',
   text: '#f5f5f5',
-  card: '#333333',
   border: '#444444',
+  activeText: '#FFD639',
+  searchBarBackgroundColor: '#ffffff30',
+  searchInputColor: '#fff',
+  placeholderTextColor: '#ccc',
+  iconColor: '#fff', 
+  dividerColor: 'rgba(255,255,255,0.3)',
+  backgroundGradientStartColor: '#5B2EFF',
+  backgroundGradientEndColor: '#FF5CA8',
 };
 
 export const ThemeColors = {

@@ -1,5 +1,5 @@
-import { useThemeColor } from '@/hooks/useThemeColor';
-import { Pressable, StyleSheet, Text } from 'react-native';
+import { useThemeColor } from "@/hooks/useThemeColor";
+import { Pressable, StyleSheet, Text } from "react-native";
 
 type TabItemProps = {
   label: string;
@@ -8,16 +8,19 @@ type TabItemProps = {
 };
 
 export function TabItem({ label, isActive = false, onPress }: TabItemProps) {
-  const textColor = useThemeColor({}, 'text');
-  const borderColor = useThemeColor({}, 'text');
+  const textColor = useThemeColor({}, "text");
+  const activeTabColor = useThemeColor({}, "activeText");
 
   return (
     <Pressable onPress={onPress} style={styles.container}>
       <Text
         style={[
           styles.text,
-          { color: textColor },
-          isActive && { borderBottomColor: borderColor, borderBottomWidth: 2 },
+          { color: isActive ? activeTabColor : textColor },
+          isActive && {
+            borderBottomColor: activeTabColor,
+            borderBottomWidth: 2,
+          },
         ]}
       >
         {label}
@@ -28,11 +31,13 @@ export function TabItem({ label, isActive = false, onPress }: TabItemProps) {
 
 const styles = StyleSheet.create({
   container: {
-    paddingBottom: 4,
+    paddingBottom: 0,
   },
   text: {
     fontSize: 14,
-    fontWeight: 'bold',
-    textTransform: 'uppercase',
+    fontWeight: "bold",
+    textTransform: "uppercase",
+    paddingBottom: 4,
+    paddingHorizontal: 20,
   },
 });

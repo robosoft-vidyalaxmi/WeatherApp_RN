@@ -1,19 +1,22 @@
-import { DateTimeDisplay } from '@/components/molecules/DateTimeDisplay';
-import { TabItem } from '@/components/molecules/TabItem';
-import { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { DateTimeDisplay } from "@/components/molecules/DateTimeDisplay";
+import { TabItem } from "@/components/molecules/TabItem";
+import { useThemeColor } from "@/hooks/useThemeColor";
+import { useState } from "react";
+import { StyleSheet, View } from "react-native";
 
-const navItems = ['HOME', 'FAVOURITE', 'RECENT SEARCH'];
+const navItems = ["Home", "Favourite", "Recent Search"];
 
 export default function TopNavBar() {
-  const [activeTab, setActiveTab] = useState('HOME');
+  const dividerColor = useThemeColor({}, "dividerColor");
+
+  const [activeTab, setActiveTab] = useState("Home");
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { borderBottomColor: dividerColor }]}>
       <View style={styles.left}>
-        {navItems.map((item) => (
+        {navItems.map((item, index) => (
           <TabItem
-            key={item}
+            key={index}
             label={item}
             isActive={activeTab === item}
             onPress={() => setActiveTab(item)}
@@ -29,21 +32,23 @@ export default function TopNavBar() {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 24,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    paddingRight: 10,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     borderBottomWidth: 0.5,
-    borderBottomColor: 'rgba(255,255,255,0.3)',
-    paddingVertical: 12,
+    paddingTop: 20,
+    paddingBottom: 0,
+    marginBottom: 25,
   },
   left: {
-    flexDirection: 'row',
+    flexDirection: "row",
     gap: 24,
   },
   right: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: 12,
+    paddingBottom: 4,
   },
 });
