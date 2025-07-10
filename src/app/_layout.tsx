@@ -1,5 +1,7 @@
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
+import { I18nextProvider } from "react-i18next";
+import i18n from "../assets/i18n";
 import { ThemeProvider } from "../contexts/ThemeProvider";
 
 const RootNavigator = () => {
@@ -22,7 +24,9 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider>
-      <RootNavigator />
+      <I18nextProvider i18n={i18n}>
+        <RootNavigator />
+      </I18nextProvider>
     </ThemeProvider>
   );
 }

@@ -1,5 +1,5 @@
-import { STRINGS } from "@/src/constants/strings";
 import { useTheme } from "@emotion/react";
+import { useTranslation } from "react-i18next";
 import { Text } from "./styles";
 
 interface FavouriteLabelProps {
@@ -8,6 +8,7 @@ interface FavouriteLabelProps {
 
 const FavouriteLabel: React.FC<FavouriteLabelProps> = ({ isFavourite }) => {
   const theme = useTheme();
+  const { t } = useTranslation();
 
   return (
     <Text
@@ -15,7 +16,7 @@ const FavouriteLabel: React.FC<FavouriteLabelProps> = ({ isFavourite }) => {
         { color: isFavourite ? theme.colors.activeText : theme.colors.text },
       ]}
     >
-      {isFavourite ? STRINGS.addedToFavourite : STRINGS.addToFavourite}
+      {isFavourite ? t("addedToFavourite") : t("addToFavourite")}
     </Text>
   );
 };

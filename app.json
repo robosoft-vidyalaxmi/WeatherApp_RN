@@ -29,6 +29,10 @@
         }
       }
     },
+    "locales": {
+      "ja": "./src/assets/i18n/locales/ja/system-translation.json",
+      "en-US": "./src/assets/i18n/locales/en-US/system-translation.json"
+    },
     "plugins": [
       "expo-router",
       [
