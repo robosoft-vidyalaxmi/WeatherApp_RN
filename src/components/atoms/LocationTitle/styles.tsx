@@ -2,7 +2,7 @@ import styled from "@emotion/native";
 
 export const Text = styled.Text(({ theme }) => ({
   fontSize: 18,
-  fontWeight: "bold",
+  fontFamily: theme.fonts.semibold,
   marginBottom: 6,
   color: theme.colors.text,
 }));

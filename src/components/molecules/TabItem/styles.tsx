@@ -6,7 +6,7 @@ export const Pressable = styled.Pressable({
 
 export const Text = styled.Text(({ theme }) => ({
   fontSize: 14,
-  fontWeight: "bold",
+  fontFamily: theme.fonts.regular,
   textTransform: "uppercase",
   paddingBottom: 4,
   paddingHorizontal: 20,

@@ -8,6 +8,7 @@
     "scheme": "weatherapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
@@ -21,7 +22,12 @@
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/favicon.png",
+      "build": {
+        "babel": {
+          "include": ["@emotion/react"]
+        }
+      }
     },
     "plugins": [
       "expo-router",

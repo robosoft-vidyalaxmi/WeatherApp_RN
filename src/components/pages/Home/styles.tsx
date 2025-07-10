@@ -8,10 +8,11 @@ export const LinearGradientView = styled(LinearGradient)({
   justifyContent: "space-between",
 });
 
-export const TitleText = styled.Text({
+export const TitleText = styled.Text(({ theme }) => ({
   fontSize: 24,
   fontWeight: "600",
-});
+  fontFamily: theme.fonts.semibold,
+}));
 
 export const FavoriteText = styled.Text({
   marginTop: 4,

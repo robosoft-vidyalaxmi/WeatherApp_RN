@@ -10,7 +10,7 @@ export const HeaderView = styled.View({
 
 export const LogoText = styled.Text(({ theme }) => ({
   fontSize: 28,
-  fontWeight: "bold",
+  fontFamily: theme.fonts.bold,
   marginRight: 12,
   alignSelf: "center",
   color: theme.colors.text,

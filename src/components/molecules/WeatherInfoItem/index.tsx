@@ -20,11 +20,10 @@ const WeatherInfoItem: React.FC<WeatherInfoItemProps> = ({
 }) => {
   const theme = useTheme();
   const iconColor = theme.colors.iconColor;
-  const textColor = theme.colors.text;
 
   return (
     <ContainerView>
-      <Feather name={icon} size={18} color={iconColor} />
+      <Feather name={icon} size={25} color={iconColor} />
       <DataContainerView>
         <LabelText>{label}</LabelText>
         <ValueText>{value}</ValueText>

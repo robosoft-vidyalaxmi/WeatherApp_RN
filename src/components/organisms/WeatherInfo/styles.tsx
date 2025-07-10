@@ -9,12 +9,13 @@ export const ContainerView = styled.View({
 
 export const TemperatureText = styled.Text(({ theme }) => ({
   fontSize: 60,
-  fontWeight: "bold",
+  fontFamily: theme.fonts.bold,
   color: theme.colors.text,
 }));
 
 export const ConditionText = styled.Text(({ theme }) => ({
   fontSize: 20,
+  fontFamily: theme.fonts.light,
   color: theme.colors.text,
   marginBottom: 20,
 }));

@@ -13,7 +13,11 @@ const FavouriteInfo: React.FC<FavouriteInfoProps> = ({
 }) => {
   return (
     <Pressable onPress={onToggle}>
-      <FavouriteToggleIcon isFavourite={isFavourite} onToggle={onToggle} />
+      <FavouriteToggleIcon
+        isFavourite={isFavourite}
+        onToggle={onToggle}
+        size={16}
+      />
       <FavouriteLabel isFavourite={isFavourite} />
     </Pressable>
   );
