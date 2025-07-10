@@ -2,7 +2,7 @@ import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { I18nextProvider } from "react-i18next";
 import i18n from "../assets/i18n";
-import { ThemeProvider } from "../contexts/ThemeProvider";
+import { MediaQueryProvider, ThemeProvider } from "../contexts";
 
 const RootNavigator = () => {
   return <Stack screenOptions={{ headerShown: false }} />;
@@ -24,9 +24,11 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider>
-      <I18nextProvider i18n={i18n}>
-        <RootNavigator />
-      </I18nextProvider>
+      <MediaQueryProvider>
+        <I18nextProvider i18n={i18n}>
+          <RootNavigator />
+        </I18nextProvider>
+      </MediaQueryProvider>
     </ThemeProvider>
   );
 }

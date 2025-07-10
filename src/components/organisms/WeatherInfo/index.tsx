@@ -1,14 +1,19 @@
-import { useWeather } from "@/src/hooks/useWeather";
 import React from "react";
 import { ConditionText, ContainerView, TemperatureText } from "./styles";
 
-const WeatherInfo: React.FC = () => {
-  const { data } = useWeather();
+interface WeatherInfoProps {
+  temperature: string;
+  description: string;
+}
 
+const WeatherInfo: React.FC<WeatherInfoProps> = ({
+  temperature,
+  description,
+}) => {
   return (
     <ContainerView>
-      <TemperatureText>{data.temperature}°</TemperatureText>
-      <ConditionText>{data.condition}</ConditionText>
+      <TemperatureText>{temperature}°C</TemperatureText>
+      <ConditionText>{description}</ConditionText>
     </ContainerView>
   );
 };
