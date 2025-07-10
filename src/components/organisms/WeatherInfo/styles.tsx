@@ -3,6 +3,8 @@ import styled from "@emotion/native";
 export const ContainerView = styled.View({
   marginTop: 40,
   alignItems: "center",
+  justifyContent: "center",
+  flex: 1,
 });
 
 export const TemperatureText = styled.Text(({ theme }) => ({
