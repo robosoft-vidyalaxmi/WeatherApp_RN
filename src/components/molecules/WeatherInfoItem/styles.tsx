@@ -8,12 +8,12 @@ export const ContainerView = styled.View({
 export const DataContainerView = styled.View({
   marginLeft: 8,
   flexDirection: "column",
+  gap: 5,
 });
 
 export const LabelText = styled.Text(({ theme }) => ({
   fontSize: 15,
-  fontFamily: theme.fonts.regular,
-  marginTop: 4,
+  fontFamily: theme.fonts.light,
   color: theme.colors.text,
 }));
 

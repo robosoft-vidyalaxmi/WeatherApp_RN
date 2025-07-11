@@ -1,7 +1,6 @@
 import HomePageHeader from "@/src/components/organisms/HomePageHeader";
 import TopNavBar from "@/src/components/organisms/TopNavBar";
 import { useTheme } from "@emotion/react";
-import React from "react";
 import LocationAndWeatherInfo from "../../organisms/LocationAndWeatherInfo";
 import { LinearGradientView } from "./styles";
 

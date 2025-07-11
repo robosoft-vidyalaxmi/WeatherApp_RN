@@ -1,10 +1,14 @@
 {
   "appTitle": "Weather",
-  "location": "Udupi, Karnataka",
   "addToFavourite": "Add to favourite",
   "addedToFavourite": "Added to favourite",
   "searchPlaceholder": "Search city",
   "home": "Home",
   "favourite": "Favourite",
-  "recentSearch": "Recent Search"
+  "recentSearch": "Recent Search",
+  "minMaxTemperature": "Min - Max",
+  "precipitation": "Precipitation",
+  "humidity": "Humidity",
+  "wind": "Wind",
+  "visibility": "Visibility"
 }

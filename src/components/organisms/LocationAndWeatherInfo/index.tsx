@@ -1,10 +1,11 @@
 import { useCurrentLocation } from "@/src/hooks/useCurrentLocation";
 import { useWeather } from "@/src/hooks/useWeather";
-import React from "react";
-import { View } from "react-native";
+import { LocationData } from "@/src/types/location";
+import { WeatherData } from "@/src/types/weather";
 import LocationInfo from "../../molecules/LocationInfo";
-import WeatherInfo from "../WeatherInfo";
-import WeatherInfoFooter from "../WeatherInfoFooter";
+import TemperatureDetails from "../TemperatureDetails";
+import WeatherDetails from "../WeatherDetails";
+import { View } from "./styles";
 
 const LocationAndWeatherInfo: React.FC = () => {
   const {
@@ -19,31 +20,43 @@ const LocationAndWeatherInfo: React.FC = () => {
     error: weatherError,
   } = useWeather(location?.latitude, location?.longitude);
 
-  const renderLocationAndWeatherData = (
-    locationName: string,
-    temperature: string,
-    description: string
-  ) => (
-    <>
-      <LocationInfo
-        locationName={locationName}
-        isFavourite={false}
-        onToggleFavourite={() => console.log("Toggled")}
-      />
-      <WeatherInfo temperature={temperature} description={description} />
-      <WeatherInfoFooter />
-    </>
+  const renderLocationInfo = (location: LocationData) => (
+    <LocationInfo
+      locationName={`${location?.city ?? ""}, ${location?.region ?? ""}`}
+      isFavourite={false}
+      onToggleFavourite={() => console.log("Toggled")}
+    />
+  );
+
+  const renderTemperatureDetails = (weatherData: WeatherData) => (
+    <TemperatureDetails
+      iconName={weatherData.icon}
+      temperature={`${weatherData?.temperature}°`}
+      description={weatherData.description}
+    />
+  );
+
+  const renderWeatherDetails = (weatherData: WeatherData) => (
+    <WeatherDetails
+      minMaxTemperature={`${Math.floor(weatherData.tempMin) ?? ""}° - ${
+        Math.floor(weatherData.tempMax) ?? ""
+      }°`}
+      percipitation={`${Math.floor(weatherData.precipitation) ?? ""}%`}
+      humidity={`${weatherData.humidity.toString() ?? ""}%`}
+      wind={`${Math.floor(weatherData.windspeed) ?? ""} km/h`}
+      visibility={`${weatherData.visibility.toString() ?? ""} m`}
+    />
   );
 
   return (
-    <View style={{ flex: 1 }}>
-      {location &&
-        weather &&
-        renderLocationAndWeatherData(
-          `${location?.city ?? ""}, ${location?.region ?? ""}`,
-          `${weather?.temperature}`,
-          `${weather?.description}`
-        )}
+    <View>
+      {location && weather && (
+        <>
+          {renderLocationInfo(location)}
+          {renderTemperatureDetails(weather)}
+          {renderWeatherDetails(weather)}
+        </>
+      )}
     </View>
   );
 };

@@ -3,17 +3,10 @@ import {
     getLocationName,
 } from "@/src/services/locationService";
 import { useEffect, useState } from "react";
-
-interface LocationState {
-  latitude: number;
-  longitude: number;
-  city?: string;
-  region?: string;
-  country?: string;
-}
+import { LocationData } from "../types/location";
 
 export const useCurrentLocation = () => {
-  const [location, setLocation] = useState<LocationState | null>(null);
+  const [location, setLocation] = useState<LocationData | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
