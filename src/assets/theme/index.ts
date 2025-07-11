@@ -7,7 +7,7 @@ export const lightTheme: UITheme = {
     activeText: "#FFD639",
     searchBarBackgroundColor: "#ffffff30", // Semi-transparent white background
     searchInputColor: "#fff",
-    placeholderTextColor: "#ccc",
+    placeholderTextColor: "#aaa",
     iconColor: "#fff",
     dividerColor: "rgba(255,255,255,0.3)",
     backgroundGradientStartColor: "#5B2EFF",
@@ -30,7 +30,7 @@ export const darkTheme: UITheme = {
     activeText: "#FFD639",
     searchBarBackgroundColor: "#ffffff30",
     searchInputColor: "#fff",
-    placeholderTextColor: "#ccc",
+    placeholderTextColor: "#aaa",
     iconColor: "#fff",
     dividerColor: "rgba(255,255,255,0.3)",
     backgroundGradientStartColor: "#5B2EFF",
