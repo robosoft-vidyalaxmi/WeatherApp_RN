@@ -3,8 +3,10 @@ import { UITheme } from "@/src/types/theme";
 export const lightTheme: UITheme = {
   colors: {
     text: "#f5f5f5",
-    border: "#cccccc",
-    activeText: "#FFD639",
+    primary1: "#fff",
+    border: "#FEFCFF",
+    activeText1: "#FFD639",
+    activeText2: "##FF2C2C",
     searchBarBackgroundColor: "#ffffff30", // Semi-transparent white background
     searchInputColor: "#fff",
     placeholderTextColor: "#aaa",
@@ -26,8 +28,10 @@ export const lightTheme: UITheme = {
 export const darkTheme: UITheme = {
   colors: {
     text: "#f5f5f5",
-    border: "#444444",
-    activeText: "#FFD639",
+    primary1: "#fff",
+    border: "#FEFCFF",
+    activeText1: "#FFD639",
+    activeText2: "#FF2C2C",
     searchBarBackgroundColor: "#ffffff30",
     searchInputColor: "#fff",
     placeholderTextColor: "#aaa",

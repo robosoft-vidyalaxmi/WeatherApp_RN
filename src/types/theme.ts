@@ -1,8 +1,10 @@
 // Define the mandatory color keys
 export type ColorKeys =
   | "text"
+  | "primary1"
   | "border"
-  | "activeText"
+  | "activeText1"
+  | "activeText2"
   | "searchBarBackgroundColor"
   | "searchInputColor"
   | "placeholderTextColor"

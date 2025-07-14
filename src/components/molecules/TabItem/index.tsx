@@ -14,21 +14,11 @@ const TabItem: React.FC<TabItemProps> = ({
 }) => {
   const theme = useTheme();
   const textColor = theme.colors.text;
-  const activeTabColor = theme.colors.activeText;
+  const activeTabColor = theme.colors.activeText1;
 
   return (
     <Pressable onPress={onPress}>
-      <Text
-        style={[
-          { color: isActive ? activeTabColor : textColor },
-          isActive && {
-            borderBottomColor: activeTabColor,
-            borderBottomWidth: 2,
-          },
-        ]}
-      >
-        {label}
-      </Text>
+      <Text isActive={isActive}>{label}</Text>
     </Pressable>
   );
 };

@@ -20,7 +20,7 @@ const FavouriteToggleIcon: React.FC<FavouriteToggleIconProps> = ({
       <FontAwesome
         name={isFavourite ? "heart" : "heart-o"} // filled or outlined
         size={size}
-        color={isFavourite ? theme.colors.activeText : theme.colors.iconColor}
+        color={isFavourite ? theme.colors.activeText1 : theme.colors.iconColor}
       />
     </Pressable>
   );

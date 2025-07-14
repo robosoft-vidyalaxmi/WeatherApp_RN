@@ -1,6 +1,8 @@
+import { store } from "@/src/store/redux/store";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { I18nextProvider } from "react-i18next";
+import { Provider } from "react-redux";
 import i18n from "../assets/i18n";
 import { MediaQueryProvider, ThemeProvider } from "../contexts";
 
@@ -25,9 +27,11 @@ export default function RootLayout() {
   return (
     <ThemeProvider>
       <MediaQueryProvider>
-        <I18nextProvider i18n={i18n}>
-          <RootNavigator />
-        </I18nextProvider>
+        <Provider store={store}>
+          <I18nextProvider i18n={i18n}>
+            <RootNavigator />
+          </I18nextProvider>
+        </Provider>
       </MediaQueryProvider>
     </ThemeProvider>
   );

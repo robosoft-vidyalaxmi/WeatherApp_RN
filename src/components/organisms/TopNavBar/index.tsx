@@ -1,14 +1,13 @@
-import { useMediaQueryContext } from "@/src/contexts";
+import { useIsWeb } from "@/src/utils/platform";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Platform, ScrollView } from "react-native";
+import { ScrollView } from "react-native";
 import DateTimeDisplay from "../../molecules/DateTimeDisplay";
 import TabItem from "../../molecules/TabItem";
 import { ContainerView, DateTimeView, TabsView } from "./styles";
 
 const TopNavBar: React.FC = () => {
   const { t } = useTranslation();
-  const { isMobile, isTablet } = useMediaQueryContext();
   const [activeTab, setActiveTab] = useState(t("home"));
 
   const navItems = [t("home"), t("favourite"), t("recentSearch")];
@@ -32,7 +31,7 @@ const TopNavBar: React.FC = () => {
     </DateTimeView>
   );
 
-  const isWeb = Platform.OS === "web" && !(isMobile || isTablet);
+  const isWeb = useIsWeb();
   return (
     <>
       <ContainerView>

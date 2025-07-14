@@ -1,4 +1,5 @@
 import styled from "@emotion/native";
+import { Feather } from "@expo/vector-icons";
 
 export const ContainerView = styled.View({
   flexDirection: "row",
@@ -21,4 +22,8 @@ export const ValueText = styled.Text(({ theme }) => ({
   fontSize: 20,
   fontFamily: theme.fonts.medium,
   color: theme.colors.text,
+}));
+
+export const WeatherIcon = styled(Feather)(({ theme }) => ({
+  color: theme.colors.iconColor,
 }));

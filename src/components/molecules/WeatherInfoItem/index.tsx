@@ -1,10 +1,10 @@
-import { useTheme } from "@emotion/react";
 import { Feather } from "@expo/vector-icons";
 import {
   ContainerView,
   DataContainerView,
   LabelText,
   ValueText,
+  WeatherIcon,
 } from "./styles";
 
 interface WeatherInfoItemProps {
@@ -18,12 +18,9 @@ const WeatherInfoItem: React.FC<WeatherInfoItemProps> = ({
   label,
   value,
 }) => {
-  const theme = useTheme();
-  const iconColor = theme.colors.iconColor;
-
   return (
     <ContainerView>
-      <Feather name={icon} size={25} color={iconColor} />
+      <WeatherIcon name={icon} size={25} />
       <DataContainerView>
         <LabelText>{label}</LabelText>
         <ValueText>{value}</ValueText>
