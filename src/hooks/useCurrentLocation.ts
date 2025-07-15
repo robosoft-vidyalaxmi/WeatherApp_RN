@@ -1,6 +1,6 @@
 import {
   getLocationCoords
-} from "@/src/services/locationService";
+} from "@/src/services/deviceLocationService";
 import { useEffect, useState } from "react";
 import { LocationHandler } from "../network/apiHandlers/locationHandler";
 import { LocationData } from "../types/location";

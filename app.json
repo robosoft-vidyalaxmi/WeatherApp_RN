@@ -11,10 +11,7 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.robosoftvidyalaxmi.weatherapp",
-      "infoPlist": {
-        "NSLocationWhenInUseUsageDescription": "This app uses your location to provide weather information."
-      }
+      "bundleIdentifier": "com.robosoftvidyalaxmi.weatherapp"
     },
     "android": {
       "adaptiveIcon": {
@@ -62,7 +59,12 @@
           ]
         }
       ],
-      "expo-localization"
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
