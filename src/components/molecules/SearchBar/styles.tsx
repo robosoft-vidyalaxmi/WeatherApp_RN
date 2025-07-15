@@ -24,5 +24,4 @@ export const SearchInput = styled.TextInput(({ theme }) => ({
   outlineWidth: 0,
   outlineColor: "transparent",
   outlineOffset: 0,
-  placeholderTextColor: theme.colors.placeholderTextColor,
 }));
