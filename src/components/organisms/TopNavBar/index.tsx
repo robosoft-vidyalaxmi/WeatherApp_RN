@@ -1,4 +1,4 @@
-import { useIsWeb } from "@/src/utils/platform";
+import { useIsWeb } from "@/src/hooks/useIsWeb";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ScrollView } from "react-native";

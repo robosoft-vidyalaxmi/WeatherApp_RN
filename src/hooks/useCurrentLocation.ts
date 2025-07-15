@@ -4,6 +4,7 @@ import {
 import { useEffect, useState } from "react";
 import { LocationHandler } from "../network/apiHandlers/locationHandler";
 import { LocationData } from "../types/location";
+import { normalizeCoords } from "../utils/location";
 
 export const useCurrentLocation = () => {
   const [location, setLocation] = useState<LocationData | null>(null);
@@ -16,13 +17,12 @@ export const useCurrentLocation = () => {
     const fetchLocation = async () => {
       try {
         const coords = await getLocationCoords();
-        console.log("Coordinates:", coords);
         const data = await locationService.getLocationName(coords.latitude, coords.longitude);
         const place = data.data.address;
-        console.log("Location data:", place);
+        const { latitude, longitude } = normalizeCoords(coords.latitude, coords.longitude);
         setLocation({
-          latitude: coords.latitude,
-          longitude: coords.longitude,
+          latitude: latitude,
+          longitude: longitude,
           city: place.city ?? place.town ?? place.village ?? "",
           region: place.state ?? "",
           country: place.country ?? "",
