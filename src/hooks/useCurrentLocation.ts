@@ -1,8 +1,8 @@
 import {
-    getLocationCoords,
-    getLocationName,
+  getLocationCoords
 } from "@/src/services/locationService";
 import { useEffect, useState } from "react";
+import { LocationHandler } from "../network/apiHandlers/locationHandler";
 import { LocationData } from "../types/location";
 
 export const useCurrentLocation = () => {
@@ -10,20 +10,22 @@ export const useCurrentLocation = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
+  const locationService = LocationHandler();
+
   useEffect(() => {
     const fetchLocation = async () => {
       try {
         const coords = await getLocationCoords();
-        const place = await getLocationName(coords.latitude, coords.longitude);
-        const safe = (value: string | null): string | undefined =>
-          value ?? undefined;
-
+        console.log("Coordinates:", coords);
+        const data = await locationService.getLocationName(coords.latitude, coords.longitude);
+        const place = data.data.address;
+        console.log("Location data:", place);
         setLocation({
           latitude: coords.latitude,
           longitude: coords.longitude,
-          city: safe(place.city),
-          region: safe(place.region),
-          country: safe(place.country),
+          city: place.city ?? place.town ?? place.village ?? "",
+          region: place.state ?? "",
+          country: place.country ?? "",
         });
       } catch (err: any) {
         setError(err.message);

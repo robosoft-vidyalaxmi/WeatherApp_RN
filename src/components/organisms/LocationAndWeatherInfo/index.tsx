@@ -1,14 +1,14 @@
 import { useCurrentLocation } from "@/src/hooks/useCurrentLocation";
 import { useWeather } from "@/src/hooks/useWeather";
-import { setTemperatureUnit } from "@/src/store/redux/slices/unit-slice";
-import { useAppDispatch, useAppSelector } from "@/src/store/redux/store";
+import { WeatherData } from "@/src/models/weather";
+import { useAppSelector } from "@/src/store/redux/store";
 import { LocationData } from "@/src/types/location";
-import { WeatherData } from "@/src/types/weather";
 import { getDisplayTemperature } from "@/src/utils/temperature";
+import { useTheme } from "@emotion/react";
 import LocationInfo from "../../molecules/LocationInfo";
 import TemperatureDetails from "../TemperatureDetails";
 import WeatherDetails from "../WeatherDetails";
-import { View } from "./styles";
+import { ActivityIndicator, View } from "./styles";
 
 const LocationAndWeatherInfo: React.FC = () => {
   const {
@@ -24,19 +24,17 @@ const LocationAndWeatherInfo: React.FC = () => {
   } = useWeather(location?.latitude, location?.longitude);
 
   const unit = useAppSelector((state) => state.unit.temperatureUnit);
-
-  const dispatch = useAppDispatch();
-
-  const toggleUnit = () => {
-    dispatch(setTemperatureUnit(unit === "C" ? "F" : "C"));
-  };
+  const theme = useTheme();
 
   const renderLocationInfo = (location: LocationData) => (
-    <LocationInfo
-      locationName={`${location?.city ?? ""}, ${location?.region ?? ""}`}
-      isFavourite={false}
-      onToggleFavourite={() => console.log("Toggled")}
-    />
+    <>
+      {console.log("Location:", location)}
+      <LocationInfo
+        locationName={`${location?.city ?? ""}, ${location?.region ?? ""}`}
+        isFavourite={false}
+        onToggleFavourite={() => console.log("Toggled")}
+      />
+    </>
   );
 
   const renderTemperatureDetails = (weatherData: WeatherData) => (
@@ -45,7 +43,6 @@ const LocationAndWeatherInfo: React.FC = () => {
       temperature={weatherData.temperature}
       description={weatherData.description}
       unit={unit}
-      onToggle={toggleUnit}
     />
   );
 
@@ -64,6 +61,9 @@ const LocationAndWeatherInfo: React.FC = () => {
 
   return (
     <View>
+      {(locationLoading || weatherLoading) && (
+        <ActivityIndicator size="large" color={theme.colors.primary1} />
+      )}
       {location && weather && (
         <>
           {renderLocationInfo(location)}
