@@ -2,22 +2,16 @@ import HomePageHeader from "@/src/components/organisms/HomePageHeader";
 import { useIsWeb } from "@/src/hooks/useIsWeb";
 import { useTheme } from "@emotion/react";
 import ScreenWithHeaderOffset from "../../layouts/ScreenWithHeaderOffset";
-import LocationAndWeatherInfo from "../../organisms/LocationAndWeatherInfo";
 import { LinearGradientView } from "./styles";
 
-const HomeScreenPage: React.FC = () => {
+const FavoritesScreenPage: React.FC = () => {
   const theme = useTheme();
   const backgroundGradientStartColor =
     theme.colors.backgroundGradientStartColor;
   const backgroundGradientEndColor = theme.colors.backgroundGradientEndColor;
   const isWeb = useIsWeb();
 
-  const Content = (
-    <>
-      {!isWeb && <HomePageHeader />}
-      <LocationAndWeatherInfo />
-    </>
-  );
+  const Content = <>{!isWeb && <HomePageHeader />}</>;
 
   return (
     <LinearGradientView
@@ -34,4 +28,4 @@ const HomeScreenPage: React.FC = () => {
   );
 };
 
-export default HomeScreenPage;
+export default FavoritesScreenPage;

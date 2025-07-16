@@ -7,8 +7,14 @@ import { PersistGate } from "redux-persist/integration/react";
 import i18n from "../assets/i18n";
 import { MediaQueryProvider, ThemeProvider } from "../contexts";
 
+export const unstable_settings = {
+  initialRouteName: "(home)",
+};
+
 const RootNavigator = () => {
-  return <Stack screenOptions={{ headerShown: false }} />;
+  return (
+    <Stack initialRouteName="(home)" screenOptions={{ headerShown: false }} />
+  );
 };
 
 export default function RootLayout() {
