@@ -1,24 +1,25 @@
 import styled from "@emotion/native";
 import { EdgeInsets } from "react-native-safe-area-context";
 
-export const MContainer = styled.View<{ insets: EdgeInsets }>(
+export const ContainerView = styled.View<{ insets: EdgeInsets }>(
   ({ insets, theme }) => ({
     flexDirection: "row",
-    justifyContent: "space-around",
-    backgroundColor: "pink",
+    backgroundColor: theme.colors.tabBarBackgroundColor,
     paddingVertical: 10,
     paddingBottom: insets.bottom - 10,
   })
 );
 
-export const MTabButton = styled.TouchableOpacity({
+export const TabButton = styled.TouchableOpacity({
   alignItems: "center",
   paddingHorizontal: 10,
+  flex: 1,
+  justifyContent: "center",
 });
 
-export const MTitle = styled.Text<{ isFocused: boolean }>(
+export const TabTitleText = styled.Text<{ isFocused: boolean }>(
   ({ isFocused, theme }) => ({
-    color: isFocused ? "#ffffff" : "#808080",
+    color: isFocused ? theme.colors.primary1 : theme.colors.primary2,
     fontSize: 12,
     fontWeight: "500",
     paddingTop: 4,

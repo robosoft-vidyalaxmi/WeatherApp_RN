@@ -20,6 +20,16 @@ export const TabsView = styled.View({
   minWidth: "60%",
 });
 
+export const NavText = styled.Text<{ isActive: boolean }>(
+  ({ isActive, theme }) => ({
+    fontSize: 16,
+    fontFamily: theme.fonts.regular,
+    paddingLeft: 16,
+    paddingRight: 16,
+    color: isActive ? theme.colors.activeText1 : theme.colors.text,
+  })
+);
+
 export const DateTimeView = styled.View({
   flexDirection: "row",
   alignItems: "center",

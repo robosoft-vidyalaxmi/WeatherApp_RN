@@ -1,37 +1,33 @@
 import HomePageHeader from "@/src/components/organisms/HomePageHeader";
 import { useIsWeb } from "@/src/hooks/useIsWeb";
-import { useTheme } from "@emotion/react";
-import ScreenWithHeaderOffset from "../../layouts/ScreenWithHeaderOffset";
-import LocationAndWeatherInfo from "../../organisms/LocationAndWeatherInfo";
-import { LinearGradientView } from "./styles";
+import { useLocationAndWeatherInfo } from "@/src/hooks/useLocationAndWeather";
+import { useAppSelector } from "@/src/store/redux/store";
+import LinearGradientBaseView from "../../layouts/LinearGradientBaseView";
+import HomeTemplate from "../../templates/HomeTemplate";
 
 const HomeScreenPage: React.FC = () => {
-  const theme = useTheme();
-  const backgroundGradientStartColor =
-    theme.colors.backgroundGradientStartColor;
-  const backgroundGradientEndColor = theme.colors.backgroundGradientEndColor;
   const isWeb = useIsWeb();
+  const { location, weather, isFavorite, toggleFavorite, loading, error } =
+    useLocationAndWeatherInfo();
+
+  const unit = useAppSelector((state) => state.unit.temperatureUnit);
 
   const Content = (
     <>
       {!isWeb && <HomePageHeader />}
-      <LocationAndWeatherInfo />
+      <HomeTemplate
+        location={location}
+        weather={weather}
+        loading={loading}
+        error={error}
+        isFavorite={isFavorite}
+        onToggleFavorite={toggleFavorite}
+        temperatureUnit={unit}
+      />
     </>
   );
 
-  return (
-    <LinearGradientView
-      colors={[backgroundGradientStartColor, backgroundGradientEndColor]}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 0 }}
-    >
-      {isWeb ? (
-        <ScreenWithHeaderOffset>{Content}</ScreenWithHeaderOffset>
-      ) : (
-        Content
-      )}
-    </LinearGradientView>
-  );
+  return <LinearGradientBaseView>{Content}</LinearGradientBaseView>;
 };
 
 export default HomeScreenPage;

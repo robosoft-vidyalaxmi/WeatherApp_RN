@@ -2,7 +2,7 @@ import HomePageHeader from "@/src/components/organisms/HomePageHeader";
 import { useIsWeb } from "@/src/hooks/useIsWeb";
 import LinearGradientBaseView from "../../layouts/LinearGradientBaseView";
 
-const FavoritesScreenPage: React.FC = () => {
+const RecentSearchPage: React.FC = () => {
   const isWeb = useIsWeb();
 
   const Content = <>{!isWeb && <HomePageHeader />}</>;
@@ -10,4 +10,4 @@ const FavoritesScreenPage: React.FC = () => {
   return <LinearGradientBaseView>{Content}</LinearGradientBaseView>;
 };
 
-export default FavoritesScreenPage;
+export default RecentSearchPage;

@@ -2,6 +2,7 @@
 export type ColorKeys =
   | "text"
   | "primary1"
+  | "primary2"
   | "border"
   | "activeText1"
   | "activeText2"
@@ -11,7 +12,8 @@ export type ColorKeys =
   | "iconColor"
   | "dividerColor"
   | "backgroundGradientStartColor"
-  | "backgroundGradientEndColor";
+  | "backgroundGradientEndColor"
+  | "tabBarBackgroundColor";
 
 // Define the optional color keys
 export type OptionalColorKeys = "primary3" | "primary4";

@@ -1,6 +1,5 @@
-import { useIsWeb } from "@/src/hooks/useIsWeb";
-import { router } from "expo-router";
-import { useState } from "react";
+import { useIsActiveTab } from "@/src/hooks/useActiveTab";
+import { router, usePathname } from "expo-router";
 import { useTranslation } from "react-i18next";
 import DateTimeDisplay from "../../molecules/DateTimeDisplay";
 import TabItem from "../../molecules/TabItem";
@@ -8,12 +7,11 @@ import { ContainerView, DateTimeView, TabsView } from "./styles";
 
 const TopNavBar: React.FC = () => {
   const { t } = useTranslation();
-  const [activeTab, setActiveTab] = useState(t("tabs.home"));
-
-  const navItems: { name: string; href: RoutePath }[] = [
-    { name: t("tabs.home"), href: "/(home)" },
-    { name: t("tabs.favourite"), href: "/(home)/favorite" },
-    { name: t("tabs.recentSearch"), href: "/(home)/recentSearch" },
+  const pathname = usePathname();
+  const navItems: { name: string; href: StringRoute }[] = [
+    { name: t("tabs.home"), href: "/" },
+    { name: t("tabs.favourite"), href: "/favorite" },
+    { name: t("tabs.recentSearch"), href: "/recentSearch" },
   ];
 
   const handleTabPress = ({
@@ -21,21 +19,21 @@ const TopNavBar: React.FC = () => {
     href,
   }: {
     name: string;
-    href: RoutePath;
+    href: StringRoute;
   }) => {
-    console.log("Tab pressed:", { name, href });
-    setActiveTab(name);
-    router.push(href);
+    if (pathname !== href) {
+      router.push(href);
+    }
   };
-  type RoutePath = Parameters<typeof router.push>[0];
 
+  type StringRoute = Extract<Parameters<typeof router.push>[0], string>;
   const renderTabs = () => (
     <TabsView>
       {navItems.map((item, index) => (
         <TabItem
           key={index}
           label={item.name}
-          isActive={activeTab === item.name}
+          isActive={useIsActiveTab(item.href)}
           onPress={() => handleTabPress(item)}
         />
       ))}
@@ -48,7 +46,6 @@ const TopNavBar: React.FC = () => {
     </DateTimeView>
   );
 
-  const isWeb = useIsWeb();
   return (
     <>
       {

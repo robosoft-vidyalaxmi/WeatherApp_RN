@@ -4,9 +4,10 @@ export const lightTheme: UITheme = {
   colors: {
     text: "#f5f5f5",
     primary1: "#fff",
+    primary2: "#800080",
     border: "#FEFCFF",
     activeText1: "#FFD639",
-    activeText2: "##FF2C2C",
+    activeText2: "#FF2C2C",
     searchBarBackgroundColor: "#ffffff30", // Semi-transparent white background
     searchInputColor: "#fff",
     placeholderTextColor: "#aaa",
@@ -14,6 +15,7 @@ export const lightTheme: UITheme = {
     dividerColor: "rgba(255,255,255,0.3)",
     backgroundGradientStartColor: "#5B2EFF",
     backgroundGradientEndColor: "#FF5CA8",
+    tabBarBackgroundColor: "#FFC0CB",
   },
   fonts: {
     regular: "Roboto-Regular", // Required ✅
@@ -29,6 +31,7 @@ export const darkTheme: UITheme = {
   colors: {
     text: "#f5f5f5",
     primary1: "#fff",
+    primary2: "#800080",
     border: "#FEFCFF",
     activeText1: "#FFD639",
     activeText2: "#FF2C2C",
@@ -39,6 +42,7 @@ export const darkTheme: UITheme = {
     dividerColor: "rgba(255,255,255,0.3)",
     backgroundGradientStartColor: "#5B2EFF",
     backgroundGradientEndColor: "#FF5CA8",
+    tabBarBackgroundColor: "#FFC0CB",
   },
   fonts: {
     regular: "Roboto-Regular", // Required ✅

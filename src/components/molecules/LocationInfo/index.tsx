@@ -1,3 +1,4 @@
+import { useIsWeb } from "@/src/hooks/useIsWeb";
 import LocationTitle from "../../atoms/LocationTitle";
 import FavouriteInfo from "../../molecules/FavouriteInfo";
 import { Container } from "./styles";
@@ -13,8 +14,9 @@ const LocationInfo: React.FC<LocationInfoProps> = ({
   isFavourite,
   onToggleFavourite,
 }) => {
+  const isWeb = useIsWeb();
   return (
-    <Container>
+    <Container isWeb={isWeb}>
       <LocationTitle name={locationName} />
       <FavouriteInfo isFavourite={isFavourite} onToggle={onToggleFavourite} />
     </Container>

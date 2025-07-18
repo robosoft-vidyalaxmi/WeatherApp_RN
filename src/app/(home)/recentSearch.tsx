@@ -1,12 +1,7 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import RecentSearchPage from "@/src/components/pages/RecentSearch";
 
-export default function RecentSearch() {
-  return (
-    <View>
-      <Text>RecentSearch</Text>
-    </View>
-  );
-}
+const RecentSearchScreen: React.FC = () => {
+  return <RecentSearchPage />;
+};
 
-const styles = StyleSheet.create({});
+export default RecentSearchScreen;

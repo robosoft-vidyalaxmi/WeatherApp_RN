@@ -1,7 +1,8 @@
+import { useIsWeb } from "@/src/hooks/useIsWeb";
 import Feather from "@expo/vector-icons/Feather";
 import { useTranslation } from "react-i18next";
 import WeatherInfoItem from "../../molecules/WeatherInfoItem";
-import { ContainerView } from "./styles";
+import { ContainerView, ScrollView } from "./styles";
 
 interface WeatherDetailsProps {
   minMaxTemperature: string;
@@ -17,44 +18,27 @@ interface InfoItem {
   value: string;
 }
 
-const WeatherDetails: React.FC<WeatherDetailsProps> = ({
-  minMaxTemperature,
-  percipitation,
-  humidity,
-  wind,
-  visibility,
-}) => {
+const WeatherDetails: React.FC<WeatherDetailsProps> = (props) => {
   const { t } = useTranslation();
+  const isWeb = useIsWeb();
 
   const infoItems: InfoItem[] = [
     {
       icon: "thermometer",
       labelKey: "minMaxTemperature",
-      value: minMaxTemperature,
+      value: props.minMaxTemperature,
     },
     {
       icon: "cloud-rain",
       labelKey: "precipitation",
-      value: percipitation,
+      value: props.percipitation,
     },
-    {
-      icon: "droplet",
-      labelKey: "humidity",
-      value: humidity,
-    },
-    {
-      icon: "wind",
-      labelKey: "wind",
-      value: wind,
-    },
-    {
-      icon: "eye",
-      labelKey: "visibility",
-      value: visibility,
-    },
+    { icon: "droplet", labelKey: "humidity", value: props.humidity },
+    { icon: "wind", labelKey: "wind", value: props.wind },
+    { icon: "eye", labelKey: "visibility", value: props.visibility },
   ];
 
-  return (
+  const renderItems = () => (
     <ContainerView>
       {infoItems.map(({ icon, labelKey, value }) => (
         <WeatherInfoItem
@@ -65,6 +49,14 @@ const WeatherDetails: React.FC<WeatherDetailsProps> = ({
         />
       ))}
     </ContainerView>
+  );
+
+  return isWeb ? (
+    renderItems()
+  ) : (
+    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+      {renderItems()}
+    </ScrollView>
   );
 };
 

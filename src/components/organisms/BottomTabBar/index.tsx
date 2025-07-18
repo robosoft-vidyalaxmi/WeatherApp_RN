@@ -4,7 +4,7 @@ import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import { NavigationRoute, ParamListBase } from "@react-navigation/native";
 import { Href, useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { MContainer, MTabButton, MTitle } from "./styles";
+import { ContainerView, TabButton, TabTitleText } from "./styles";
 
 const BottomTabBar: React.FC<Partial<BottomTabBarProps>> = (props) => {
   const { state, descriptors } = props;
@@ -13,22 +13,23 @@ const BottomTabBar: React.FC<Partial<BottomTabBarProps>> = (props) => {
   const insets = useSafeAreaInsets();
   const theme = useTheme();
   type IoniconName = keyof typeof Ionicons.glyphMap;
+  type RouteName = "index" | "recentSearch" | "favorite";
 
-  const getIcons = (routeName: string, isFocused: boolean) => {
-    const icons: Record<
-      string,
-      { active: IoniconName; inactive: IoniconName }
-    > = {
-      index: { active: "home", inactive: "home-outline" },
-      recentSearch: { active: "search", inactive: "search-outline" },
-      favorite: { active: "heart", inactive: "heart-outline" },
-    };
+  const ICONS: Record<
+    RouteName,
+    { active: IoniconName; inactive: IoniconName }
+  > = {
+    index: { active: "home", inactive: "home-outline" },
+    recentSearch: { active: "search", inactive: "search-outline" },
+    favorite: { active: "heart", inactive: "heart-outline" },
+  };
 
-    return icons[routeName]
-      ? isFocused
-        ? icons[routeName].active
-        : icons[routeName].inactive
-      : "help-circle-outline";
+  const getIcon = (routeName: string, isFocused: boolean): IoniconName => {
+    const iconSet = ICONS[routeName as RouteName];
+
+    if (!iconSet) return "help-circle-outline";
+
+    return isFocused ? iconSet.active : iconSet.inactive;
   };
 
   const onPress = (
@@ -43,15 +44,15 @@ const BottomTabBar: React.FC<Partial<BottomTabBarProps>> = (props) => {
   };
 
   return (
-    <MContainer insets={insets}>
+    <ContainerView insets={insets}>
       {state?.routes.map((route, index) => {
         const options = descriptors?.[route.key].options;
         const label = options?.title || route.name;
         const isFocused = state.index === index;
-        const iconName = getIcons(route.name, isFocused);
+        const iconName = getIcon(route.name, isFocused);
 
         return (
-          <MTabButton
+          <TabButton
             key={route.key}
             activeOpacity={1}
             onPress={() => onPress(index, route)}
@@ -59,13 +60,13 @@ const BottomTabBar: React.FC<Partial<BottomTabBarProps>> = (props) => {
             <Ionicons
               name={iconName}
               size={32}
-              color={isFocused ? theme.colors.primary1 : theme.colors.primary3}
+              color={isFocused ? theme.colors.primary1 : theme.colors.primary2}
             />
-            <MTitle isFocused={isFocused}>{label}</MTitle>
-          </MTabButton>
+            <TabTitleText isFocused={isFocused}>{label}</TabTitleText>
+          </TabButton>
         );
       })}
-    </MContainer>
+    </ContainerView>
   );
 };
 
