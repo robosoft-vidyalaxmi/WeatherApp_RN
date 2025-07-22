@@ -6,6 +6,7 @@ export const HeaderView = styled.View({
   justifyContent: "space-between",
   flexWrap: "wrap",
   gap: 8,
+  pointerEvents: "auto",
 });
 
 export const LogoText = styled.Text(({ theme }) => ({

@@ -13,7 +13,9 @@ export type ColorKeys =
   | "dividerColor"
   | "backgroundGradientStartColor"
   | "backgroundGradientEndColor"
-  | "tabBarBackgroundColor";
+  | "tabBarBackgroundColor"
+  | "dropdownBorderColor"
+  | "dropdownItemBottomBorderColor";
 
 // Define the optional color keys
 export type OptionalColorKeys = "primary3" | "primary4";

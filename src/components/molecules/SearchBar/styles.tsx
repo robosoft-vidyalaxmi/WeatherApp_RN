@@ -25,3 +25,21 @@ export const SearchInput = styled.TextInput(({ theme }) => ({
   outlineColor: "transparent",
   outlineOffset: 0,
 }));
+
+export const DropdownContainer = styled.View(({ theme }) => ({
+  position: "absolute",
+  top: 50,
+  width: "100%",
+  backgroundColor: theme.colors.primary1,
+  borderWidth: 1,
+  borderColor: theme.colors.dropdownBorderColor,
+  borderRadius: 6,
+  maxHeight: 200,
+  zIndex: 999,
+}));
+
+export const DropdownItem = styled.Text(({ theme }) => ({
+  padding: 12,
+  borderBottomWidth: 1,
+  borderBottomColor: theme.colors.dropdownItemBottomBorderColor,
+}));

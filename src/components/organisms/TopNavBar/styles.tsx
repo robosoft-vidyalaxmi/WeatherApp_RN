@@ -18,6 +18,7 @@ export const TabsView = styled.View({
   flexShrink: 1,
   gap: 14,
   minWidth: "60%",
+  pointerEvents: "auto",
 });
 
 export const NavText = styled.Text<{ isActive: boolean }>(

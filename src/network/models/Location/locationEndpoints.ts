@@ -5,4 +5,8 @@ export const locationEndpoint: Endpoints = {
     url: "/reverse",
     method: "get",
   },
+  GET_SEARCHED_CITY: {
+    url: "/search",
+    method: "get"
+  }
 };

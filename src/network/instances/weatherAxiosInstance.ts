@@ -3,7 +3,7 @@ import { setupInterceptors } from "../interceptors";
 
 export const weatherAxiosInstance = setupInterceptors(
   axios.create({
-    baseURL: "https://api.open-meteo.com", // no /v1
+    baseURL: process.env.EXPO_PUBLIC_WEATHER_API_URL,
     timeout: 60000,
   })
 );

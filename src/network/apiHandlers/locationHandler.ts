@@ -35,6 +35,36 @@ export const LocationHandler = (): LocationService => {
         return Promise.reject(error);
       }
     },
+
+    getSearchedCities: async function (
+      city: string,
+      limit = 5
+    ): Promise<AxiosResponse<LocationResponse[]>> {
+      try {
+        const url = locationEndpoint.GET_SEARCHED_CITY.url;
+        const params = {
+          q: city,
+          format: "json",
+          limit,
+          addressdetails: 1,
+        };
+
+        const requestBody: IHttpRequestBody<undefined, typeof params> = {
+          url,
+          method: "get",
+          params,
+          axiosInstance: locationAxiosInstance,
+        };
+
+        const data = await makeHttpRequest(requestBody);
+        return data;
+      } catch (error) {
+        if (!(error instanceof Error)) {
+          return Promise.reject(new Error(String(error)));
+        }
+        return Promise.reject(error);
+      }
+    },
   };
 
   return locationService;
