@@ -27,7 +27,11 @@ const HomeScreenPage: React.FC = () => {
     </>
   );
 
-  return <LinearGradientBaseView>{Content}</LinearGradientBaseView>;
+  return (
+    <LinearGradientBaseView canAddHeaderOffset={true}>
+      {Content}
+    </LinearGradientBaseView>
+  );
 };
 
 export default HomeScreenPage;

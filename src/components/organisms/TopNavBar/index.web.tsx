@@ -8,53 +8,38 @@ import { ContainerView, DateTimeView, TabsView } from "./styles";
 const TopNavBar: React.FC = () => {
   const { t } = useTranslation();
   const pathname = usePathname();
-  const navItems: { name: string; href: StringRoute }[] = [
-    { name: t("tabs.home"), href: "/" },
-    { name: t("tabs.favourite"), href: "/favorite" },
-    { name: t("tabs.recentSearch"), href: "/recentSearch" },
-  ];
 
-  const handleTabPress = ({
-    name,
-    href,
-  }: {
-    name: string;
-    href: StringRoute;
-  }) => {
+  type StringRoute = Extract<Parameters<typeof router.push>[0], string>;
+  const tabs: { name: string; href: StringRoute }[] = [
+    { name: t("tabs.home"), href: "/" as StringRoute },
+    { name: t("tabs.favourite"), href: "/favorite" as StringRoute },
+    { name: t("tabs.recentSearch"), href: "/recentSearch" as StringRoute },
+  ];
+  const handleTabPress = ({ href }: { href: StringRoute }) => {
     if (pathname !== href) {
       router.push(href);
     }
   };
 
-  type StringRoute = Extract<Parameters<typeof router.push>[0], string>;
-  const renderTabs = () => (
-    <TabsView>
-      {navItems.map((item, index) => (
-        <TabItem
-          key={index}
-          label={item.name}
-          isActive={useIsActiveTab(item.href)}
-          onPress={() => handleTabPress(item)}
-        />
-      ))}
-    </TabsView>
-  );
-
-  const renderDateTime = () => (
-    <DateTimeView>
-      <DateTimeDisplay />
-    </DateTimeView>
-  );
-
   return (
-    <>
-      {
-        <ContainerView>
-          {renderTabs()}
-          {renderDateTime()}
-        </ContainerView>
-      }
-    </>
+    <ContainerView>
+      <TabsView>
+        {tabs.map((item, index) => {
+          const isActive = useIsActiveTab(item.href);
+          return (
+            <TabItem
+              key={index}
+              label={item.name}
+              isActive={isActive}
+              onPress={() => handleTabPress(item)}
+            />
+          );
+        })}
+      </TabsView>
+      <DateTimeView>
+        <DateTimeDisplay />
+      </DateTimeView>
+    </ContainerView>
   );
 };
 

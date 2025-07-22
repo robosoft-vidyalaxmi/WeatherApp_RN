@@ -8,6 +8,7 @@ import {
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { persistReducer, persistStore } from "redux-persist";
 import FavoritesReducer from "./slices/favorite-slice";
+import RecentSearchReducer from "./slices/recentSearch-slice";
 import UnitReducer from "./slices/unit-slice";
 
 export const useAppDispatch = () => useDispatch<AppDispatch>();
@@ -16,6 +17,7 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 const rootReducer = combineReducers({
   unit: UnitReducer,
   favorites: FavoritesReducer,
+  recentSearch: RecentSearchReducer
 });
 
 const persistConfig = {

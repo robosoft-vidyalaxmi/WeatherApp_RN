@@ -17,7 +17,6 @@ export const TabsView = styled.View({
   flexDirection: "row",
   flexShrink: 1,
   gap: 14,
-  minWidth: "60%",
   pointerEvents: "auto",
 });
 

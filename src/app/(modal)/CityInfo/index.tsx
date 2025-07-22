@@ -5,12 +5,15 @@ import { LocationData } from "@/src/types/location";
 import { getParamValue } from "@/src/utils/routing";
 
 const CityInfoScreen: React.FC = () => {
-  const { lat, lon, name } = useLocalSearchParams();
+  const { latitude, longitude, city, region, country } = useLocalSearchParams();
   const location: LocationData = {
-    latitude: parseFloat(getParamValue(lat)),
-    longitude: parseFloat(getParamValue(lon)),
-    city: getParamValue(name),
+    latitude: parseFloat(getParamValue(latitude)),
+    longitude: parseFloat(getParamValue(longitude)),
+    city: getParamValue(city),
+    region: getParamValue(region),
+    country: getParamValue(country),
   };
+  console.log(location);
   return <CityInfoPage location={location} />;
 };
 

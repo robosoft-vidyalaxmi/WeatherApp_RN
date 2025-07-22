@@ -1,9 +1,12 @@
-import { LocationHandler } from "@/src/network/apiHandlers/locationHandler";
-import { LocationResponse } from "@/src/network/models/Location/locationModel";
+import { useSearchLocation } from "@/src/hooks/useSearchLocation";
+import { addRecentSearch } from "@/src/store/redux/slices/recentSearch-slice";
+import { useAppDispatch } from "@/src/store/redux/store";
+import { LocationData } from "@/src/types/location";
+import { getLocationName } from "@/src/utils/location";
 import { useTheme } from "@emotion/react";
 import { Feather } from "@expo/vector-icons";
 import { router } from "expo-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FlatList, Pressable } from "react-native";
 import {
@@ -18,39 +21,23 @@ const SearchBar: React.FC = () => {
   const { t } = useTranslation();
   const theme = useTheme();
   const [query, setQuery] = useState("");
-  const [results, setResults] = useState<LocationResponse[]>([]);
   const [showDropdown, setShowDropdown] = useState(false);
-  const locationService = LocationHandler();
+  const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (query.length >= 2) {
-        locationService
-          .getSearchedCities(query, 5)
-          .then((res) => {
-            setResults(res.data);
-            setShowDropdown(true);
-          })
-          .catch(console.error);
-      } else {
-        setResults([]);
-        setShowDropdown(false);
-      }
-    }, 400);
+  const { results, loading } = useSearchLocation(query);
 
-    return () => clearTimeout(timeout);
-  }, [query]);
-
-  const handleCitySelect = (city: LocationResponse) => {
+  const handleCitySelect = (location: LocationData) => {
     setQuery("");
     setShowDropdown(false);
-
+    dispatch(addRecentSearch(location));
     router.push({
       pathname: "/(modal)/CityInfo",
       params: {
-        lat: city.lat,
-        lon: city.lon,
-        name: city.display_name,
+        latitude: `${location.latitude}`,
+        longitude: `${location.longitude}`,
+        city: location.city ?? "",
+        region: location.region ?? "",
+        country: location.country ?? "",
       },
     });
   };
@@ -63,18 +50,21 @@ const SearchBar: React.FC = () => {
         value={query}
         onChangeText={setQuery}
         onFocus={() => {
-          if (results.length) setShowDropdown(true);
+          setShowDropdown(true);
         }}
       />
       <SearchIcon as={Feather} name="search" size={18} />
+
       {showDropdown && results.length > 0 && (
         <DropdownContainer>
           <FlatList
             data={results}
-            keyExtractor={(item) => item.place_id.toString()}
+            keyExtractor={(location) =>
+              `${location.latitude}-${location.longitude}-${location.city}`
+            }
             renderItem={({ item }) => (
               <Pressable onPress={() => handleCitySelect(item)}>
-                <DropdownItem>{item.display_name}</DropdownItem>
+                <DropdownItem>{getLocationName(item)}</DropdownItem>
               </Pressable>
             )}
           />

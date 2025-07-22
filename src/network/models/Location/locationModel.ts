@@ -24,6 +24,7 @@ export interface LocationAddress {
   town?: string;
   city?: string;
   county?: string;
+  district?: string;
   state_district?: string;
   state?: string;
   postcode?: string;

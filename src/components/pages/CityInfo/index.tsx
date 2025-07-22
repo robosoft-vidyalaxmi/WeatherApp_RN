@@ -31,7 +31,11 @@ const CityInfoPage: React.FC<CityInfoPage> = ({ location }) => {
     </>
   );
 
-  return <LinearGradientBaseView>{Content}</LinearGradientBaseView>;
+  return (
+    <LinearGradientBaseView canAddHeaderOffset={false}>
+      {Content}
+    </LinearGradientBaseView>
+  );
 };
 
 export default CityInfoPage;

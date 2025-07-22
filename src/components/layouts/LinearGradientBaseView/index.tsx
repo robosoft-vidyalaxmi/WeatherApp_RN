@@ -4,7 +4,15 @@ import { ReactNode } from "react";
 import HeaderOffsetView from "../HeaderOffsetView";
 import { LinearGradientView } from "./styles";
 
-const LinearGradientBaseView = ({ children }: { children: ReactNode }) => {
+interface LinearGradientBaseViewProps {
+  children: ReactNode;
+  canAddHeaderOffset: boolean;
+}
+
+const LinearGradientBaseView: React.FC<LinearGradientBaseViewProps> = ({
+  children,
+  canAddHeaderOffset,
+}) => {
   const theme = useTheme();
   const backgroundGradientStartColor =
     theme.colors.backgroundGradientStartColor;
@@ -18,7 +26,11 @@ const LinearGradientBaseView = ({ children }: { children: ReactNode }) => {
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 0 }}
     >
-      {isWeb ? <HeaderOffsetView>{children}</HeaderOffsetView> : children}
+      {canAddHeaderOffset && isWeb ? (
+        <HeaderOffsetView>{children}</HeaderOffsetView>
+      ) : (
+        children
+      )}
     </LinearGradientView>
   );
 };

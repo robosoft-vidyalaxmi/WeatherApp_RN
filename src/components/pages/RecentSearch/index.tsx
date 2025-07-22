@@ -7,7 +7,11 @@ const RecentSearchPage: React.FC = () => {
 
   const Content = <>{!isWeb && <HomePageHeader />}</>;
 
-  return <LinearGradientBaseView>{Content}</LinearGradientBaseView>;
+  return (
+    <LinearGradientBaseView canAddHeaderOffset={true}>
+      {Content}
+    </LinearGradientBaseView>
+  );
 };
 
 export default RecentSearchPage;
