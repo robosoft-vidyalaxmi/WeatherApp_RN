@@ -1,13 +1,11 @@
 import { RootState } from "../redux/store";
 
-export const isFavorite = (
+export const isRecentSearch = (
   state: RootState,
   latitude: number,
   longitude: number
 ): boolean => {
-  return state.favorites.locations.some(
+  return state.recentSearch.locations.some(
     (loc) => loc.latitude === latitude && loc.longitude === longitude
   );
 };
-
-

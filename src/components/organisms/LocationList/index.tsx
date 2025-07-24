@@ -1,55 +1,41 @@
 import { SavedLocation } from "@/src/models/weather";
-import { clearAllFavorites } from "@/src/store/redux/slices/favorite-slice";
-import { useAppDispatch } from "@/src/store/redux/store";
 import { TemperatureUnit } from "@/src/types/temperatureUnit";
-import { useTranslation } from "react-i18next";
 import { FlatList, Pressable } from "react-native";
 import LocationItem from "../../molecules/LocationItem";
 import { HeaderView, Text } from "./styles";
 
 interface Props {
-  favorites: SavedLocation[];
-  onSelect: (location: SavedLocation) => void;
+  locations: SavedLocation[];
   unit: TemperatureUnit;
   currentLocation?: { latitude: number; longitude: number };
-  locationCountText: string;
+  summaryText: string;
   clearAllText: string;
+  onClearAll: () => void;
 }
 
 const LocationList: React.FC<Props> = ({
-  favorites,
-  onSelect,
+  locations,
   unit,
-  currentLocation,
-  locationCountText,
+  summaryText,
   clearAllText,
+  onClearAll,
 }) => {
-  const dispatch = useAppDispatch();
-  const { t } = useTranslation();
-
   return (
     <>
       <HeaderView>
-        {favorites.length > 0 && (
+        {locations.length > 0 && (
           <>
-            <Text>{locationCountText}</Text>
-            <Pressable onPress={() => dispatch(clearAllFavorites())}>
+            <Text>{summaryText}</Text>
+            <Pressable onPress={onClearAll}>
               <Text>{clearAllText}</Text>
             </Pressable>
           </>
         )}
       </HeaderView>
       <FlatList
-        data={favorites}
+        data={locations}
         keyExtractor={(item) => `${item.latitude}-${item.longitude}`}
-        renderItem={({ item }) => (
-          <LocationItem
-            data={item}
-            onSelect={onSelect}
-            unit={unit}
-            currentLocation={currentLocation}
-          />
-        )}
+        renderItem={({ item }) => <LocationItem data={item} unit={unit} />}
       />
     </>
   );

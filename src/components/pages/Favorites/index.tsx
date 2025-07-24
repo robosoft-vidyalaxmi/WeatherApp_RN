@@ -1,33 +1,18 @@
 import HomePageHeader from "@/src/components/organisms/HomePageHeader";
-import { useCurrentLocation } from "@/src/hooks/useCurrentLocation";
 import { useIsWeb } from "@/src/hooks/useIsWeb";
-import { SavedLocation } from "@/src/models/weather";
-import { useAppSelector } from "@/src/store/redux/store";
-import { router } from "expo-router";
+import { clearAllFavorites } from "@/src/store/redux/slices/favorite-slice";
+import { useAppDispatch, useAppSelector } from "@/src/store/redux/store";
 import { useTranslation } from "react-i18next";
 import LinearGradientBaseView from "../../layouts/LinearGradientBaseView";
+import EmptyState from "../../templates/EmptyState";
 import LocationListTemplate from "../../templates/LocationListTemplate";
 
 const FavoritesScreenPage: React.FC = () => {
   const isWeb = useIsWeb();
   const favorites = useAppSelector((state) => state.favorites.locations);
   const unit = useAppSelector((state) => state.unit.temperatureUnit);
-  const { location } = useCurrentLocation();
   const { t } = useTranslation();
-
-  const handleSelect = (location: SavedLocation) => {
-    if (!location) return;
-    router.push({
-      pathname: "/(modal)/CityInfo",
-      params: {
-        latitude: location.latitude.toString(),
-        longitude: location.longitude.toString(),
-        city: location.city ?? "",
-        region: location.region ?? "",
-        country: location.country ?? "",
-      },
-    });
-  };
+  const dispatch = useAppDispatch();
 
   const Content = <>{!isWeb && <HomePageHeader />}</>;
 
@@ -35,16 +20,14 @@ const FavoritesScreenPage: React.FC = () => {
     <LinearGradientBaseView canAddHeaderOffset={true}>
       {Content}
       <LocationListTemplate
-        favorites={favorites}
+        locations={favorites}
         unit={unit}
-        onSelect={handleSelect}
-        currentLocation={
-          location
-            ? { latitude: location.latitude, longitude: location.longitude }
-            : undefined
-        }
-        locationCountText={t("favoritesCount", { count: favorites.length })}
+        summaryText={t("favoritesCount", { count: favorites.length })}
         clearAllText={t("favorites.removeAll")}
+        onClearAll={() => dispatch(clearAllFavorites())}
+        emptyComponent={
+          <EmptyState emptyStateText={t("favorites.emptyText")} />
+        }
       />
     </LinearGradientBaseView>
   );

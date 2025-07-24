@@ -1,41 +1,35 @@
 import LocationList from "@/src/components/organisms/LocationList";
-import { LocationData } from "@/src/types/location";
+import { SavedLocation } from "@/src/models/weather";
 import { TemperatureUnit } from "@/src/types/temperatureUnit";
-import { CenteredView, Text } from "./styles";
 
 interface Props {
-  favorites: LocationData[];
+  locations: SavedLocation[];
   unit: TemperatureUnit;
-  onSelect: (location: LocationData) => void;
-  currentLocation?: { latitude: number; longitude: number };
-  locationCountText: string;
+  summaryText: string;
   clearAllText: string;
+  onClearAll: () => void;
+  emptyComponent?: React.ReactNode;
 }
 
 const LocationListTemplate: React.FC<Props> = ({
-  favorites,
+  locations,
   unit,
-  onSelect,
-  currentLocation,
-  locationCountText,
+  summaryText,
   clearAllText,
+  onClearAll,
+  emptyComponent,
 }) => {
-  if (favorites.length === 0) {
-    return (
-      <CenteredView>
-        <Text>No favorites yet</Text>
-      </CenteredView>
-    );
+  if (locations.length === 0 && emptyComponent) {
+    return emptyComponent;
   }
 
   return (
     <LocationList
-      favorites={favorites}
-      onSelect={onSelect}
+      locations={locations}
       unit={unit}
-      currentLocation={currentLocation}
-      locationCountText={locationCountText}
+      summaryText={summaryText}
       clearAllText={clearAllText}
+      onClearAll={onClearAll}
     />
   );
 };

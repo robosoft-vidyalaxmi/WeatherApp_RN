@@ -6,6 +6,7 @@ import { getLocationName } from "@/src/utils/location";
 import { getDisplayTemperature } from "@/src/utils/temperature";
 import { useTheme } from "@emotion/react";
 import { Feather, FontAwesome } from "@expo/vector-icons";
+import { router } from "expo-router";
 import React from "react";
 import { Pressable } from "react-native";
 import {
@@ -23,31 +24,32 @@ import {
 interface Props {
   data: SavedLocation;
   unit: TemperatureUnit;
-  currentLocation?: { latitude: number; longitude: number };
-  onSelect: (location: SavedLocation) => void;
 }
 
-const LocationItem: React.FC<Props> = ({
-  data: location,
-  unit,
-  currentLocation,
-  onSelect,
-}) => {
+const LocationItem: React.FC<Props> = ({ data: location, unit }) => {
   const theme = useTheme();
-  const { weather, latitude, longitude } = location;
-  const isCurrentLocation =
-    currentLocation &&
-    currentLocation.latitude === latitude &&
-    currentLocation.longitude === longitude;
+  const { weather } = location;
   const dispatch = useAppDispatch();
 
+  const handleSelect = (location: SavedLocation) => {
+    if (!location) return;
+    router.push({
+      pathname: "/(modal)/CityInfo",
+      params: {
+        latitude: location.latitude.toString(),
+        longitude: location.longitude.toString(),
+        city: location.city ?? "",
+        region: location.region ?? "",
+        country: location.country ?? "",
+      },
+    });
+  };
+
   return (
-    <Pressable onPress={() => onSelect(location)}>
+    <Pressable onPress={() => handleSelect(location)}>
       <ItemContainer>
         <InfoRow>
-          <LocationText isCurrentLocation={isCurrentLocation}>
-            {getLocationName(location)}
-          </LocationText>
+          <LocationText>{getLocationName(location)}</LocationText>
 
           {weather && (
             <WeatherInfo>

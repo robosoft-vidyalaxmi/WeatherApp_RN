@@ -13,5 +13,9 @@
   "visibility": "Visibility",
   "favoritesCount_one": "{{count}} city added as favourite",
   "favoritesCount_other": "{{count}} cities added as favourite",
-  "favorites.removeAll": "Remove All"
+  "favorites.removeAll": "Remove All",
+  "favorites.emptyText": "No favorites added",
+  "recentSearch.clear": "Clear All",
+  "recentSearch.title": "You recently searched for",
+  "recentSearch.emptyText": "No recent search"
 }

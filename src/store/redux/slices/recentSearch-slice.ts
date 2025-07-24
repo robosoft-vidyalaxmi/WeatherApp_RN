@@ -1,8 +1,8 @@
-import { LocationData } from "@/src/types/location";
+import { SavedLocation, WeatherData } from "@/src/models/weather";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface RecentSearchesState {
-  locations: LocationData[];
+  locations: SavedLocation[];
   maxHistoryLength: number;
 }
 
@@ -15,7 +15,7 @@ const recentSearchSlice = createSlice({
   name: "recentSearches",
   initialState,
   reducers: {
-    addRecentSearch: (state, action: PayloadAction<LocationData>) => {
+    addRecentSearch: (state, action: PayloadAction<SavedLocation>) => {
       const existingIndex = state.locations.findIndex(
         (loc) =>
           loc.latitude === action.payload.latitude &&
@@ -39,8 +39,25 @@ const recentSearchSlice = createSlice({
     clearRecentSearches: (state) => {
       state.locations = [];
     },
+    updateRecentSearchWeather: (
+          state,
+          action: PayloadAction<{
+            lat: number;
+            lon: number;
+            weather: WeatherData;
+          }>
+        ) => {
+          const loc = state.locations.find(
+            (l) =>
+              l.latitude === action.payload.lat &&
+              l.longitude === action.payload.lon
+          );
+          if (loc) {
+            loc.weather = action.payload.weather;
+          }
+        },
   },
 });
 
-export const { addRecentSearch, clearRecentSearches } = recentSearchSlice.actions;
+export const { addRecentSearch, clearRecentSearches, updateRecentSearchWeather } = recentSearchSlice.actions;
 export default recentSearchSlice.reducer;

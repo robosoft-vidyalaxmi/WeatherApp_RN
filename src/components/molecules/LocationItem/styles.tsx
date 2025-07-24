@@ -17,14 +17,12 @@ export const InfoRow = styled.View({
   alignItems: "center",
 });
 
-export const LocationText = styled.Text<{ isCurrentLocation?: boolean }>(
-  ({ theme, isCurrentLocation }) => ({
-    color: isCurrentLocation ? theme.colors.activeText1 : theme.colors.text,
-    fontSize: 16,
-    fontFamily: theme.fonts.medium,
-    flex: 1,
-  })
-);
+export const LocationText = styled.Text(({ theme }) => ({
+  color: theme.colors.activeText1,
+  fontSize: 16,
+  fontFamily: theme.fonts.medium,
+  flex: 1,
+}));
 
 export const WeatherInfo = styled.View({
   flexDirection: "row",
