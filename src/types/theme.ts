@@ -1,6 +1,7 @@
 // Define the mandatory color keys
 export type ColorKeys =
   | "text"
+  | "text2"
   | "primary1"
   | "primary2"
   | "border"
@@ -16,7 +17,11 @@ export type ColorKeys =
   | "tabBarBackgroundColor"
   | "dropdownBorderColor"
   | "dropdownItemBottomBorderColor"
-  | "listItemBackgroundColor";
+  | "listItemBackgroundColor"
+  | "modalConfirmButtonBackgroundColor"
+  | "modalBackgroundColor"
+  | "overlayBackgroundColor"
+  | "modalShadowColor";
 
 // Define the optional color keys
 export type OptionalColorKeys = "primary3" | "primary4";

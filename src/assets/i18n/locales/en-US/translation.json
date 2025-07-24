@@ -15,7 +15,11 @@
   "favoritesCount_other": "{{count}} cities added as favourite",
   "favorites.removeAll": "Remove All",
   "favorites.emptyText": "No favorites added",
+  "favorites.removeAllConfirmation": "Are you sure you want to remove all the favourites?",
   "recentSearch.clear": "Clear All",
   "recentSearch.title": "You recently searched for",
-  "recentSearch.emptyText": "No recent search"
+  "recentSearch.emptyText": "No recent search",
+  "recentSearch.clearAllConfirmation": "Are you sure you want to clear recent searches?",
+  "confirmationModal.confirmText": "Yes",
+  "confirmationModal.cancelText": "No"
 }

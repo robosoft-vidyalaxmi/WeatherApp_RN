@@ -3,9 +3,9 @@ import { addRecentSearch } from "@/src/store/redux/slices/recentSearch-slice";
 import { useAppDispatch } from "@/src/store/redux/store";
 import { LocationData } from "@/src/types/location";
 import { getLocationName } from "@/src/utils/location";
+import { navigateToCityInfo } from "@/src/utils/locationNavigation";
 import { useTheme } from "@emotion/react";
 import { Feather } from "@expo/vector-icons";
-import { router } from "expo-router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FlatList, Pressable } from "react-native";
@@ -30,16 +30,7 @@ const SearchBar: React.FC = () => {
     setQuery("");
     setShowDropdown(false);
     dispatch(addRecentSearch(location));
-    router.push({
-      pathname: "/(modal)/CityInfo",
-      params: {
-        latitude: `${location.latitude}`,
-        longitude: `${location.longitude}`,
-        city: location.city ?? "",
-        region: location.region ?? "",
-        country: location.country ?? "",
-      },
-    });
+    navigateToCityInfo(location);
   };
 
   return (

@@ -1,14 +1,14 @@
+import { useFavoriteLocation } from "@/src/hooks/useFavoriteLocation";
 import { SavedLocation } from "@/src/models/weather";
-import { removeFavorite } from "@/src/store/redux/slices/favorite-slice";
-import { useAppDispatch } from "@/src/store/redux/store";
 import { TemperatureUnit } from "@/src/types/temperatureUnit";
 import { getLocationName } from "@/src/utils/location";
+import { navigateToCityInfo } from "@/src/utils/locationNavigation";
 import { getDisplayTemperature } from "@/src/utils/temperature";
 import { useTheme } from "@emotion/react";
-import { Feather, FontAwesome } from "@expo/vector-icons";
-import { router } from "expo-router";
 import React from "react";
 import { Pressable } from "react-native";
+import FavouriteToggleIcon from "../../atoms/FavouriteToggleIcon";
+import WeatherConditionIcon from "../../atoms/WeatherConditionIcon";
 import {
   ConditionText,
   InfoRow,
@@ -29,34 +29,25 @@ interface Props {
 const LocationItem: React.FC<Props> = ({ data: location, unit }) => {
   const theme = useTheme();
   const { weather } = location;
-  const dispatch = useAppDispatch();
+  const { isFavorite, toggleFavorite } = useFavoriteLocation(location);
 
-  const handleSelect = (location: SavedLocation) => {
+  const handleSelect = () => {
     if (!location) return;
-    router.push({
-      pathname: "/(modal)/CityInfo",
-      params: {
-        latitude: location.latitude.toString(),
-        longitude: location.longitude.toString(),
-        city: location.city ?? "",
-        region: location.region ?? "",
-        country: location.country ?? "",
-      },
-    });
+    navigateToCityInfo(location);
   };
 
   return (
-    <Pressable onPress={() => handleSelect(location)}>
+    <Pressable onPress={handleSelect}>
       <ItemContainer>
         <InfoRow>
           <LocationText>{getLocationName(location)}</LocationText>
 
           {weather && (
             <WeatherInfo>
-              <Feather
-                name={weather.icon}
-                size={25}
+              <WeatherConditionIcon
+                icon={weather.icon}
                 color={theme.colors.iconColor}
+                size={25}
               />
               <TemperatureAndUnitContainer>
                 <TemperatureText>
@@ -64,18 +55,16 @@ const LocationItem: React.FC<Props> = ({ data: location, unit }) => {
                 </TemperatureText>
                 <UnitText>°{unit}</UnitText>
               </TemperatureAndUnitContainer>
-              {weather && <ConditionText>{weather.condition}</ConditionText>}
+              <ConditionText>{weather.condition}</ConditionText>
             </WeatherInfo>
           )}
 
           <RightSection>
-            <Pressable onPress={() => dispatch(removeFavorite(location))}>
-              <FontAwesome
-                name="heart"
-                size={18}
-                color={theme.colors.activeText1}
-              />
-            </Pressable>
+            <FavouriteToggleIcon
+              isFavourite={isFavorite}
+              onToggle={() => toggleFavorite()}
+              size={18}
+            />
           </RightSection>
         </InfoRow>
       </ItemContainer>

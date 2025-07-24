@@ -3,6 +3,7 @@ import { UITheme } from "@/src/types/theme";
 export const lightTheme: UITheme = {
   colors: {
     text: "#f5f5f5",
+    text2: "#333",
     primary1: "#fff",
     primary2: "#800080",
     border: "#FEFCFF",
@@ -19,6 +20,10 @@ export const lightTheme: UITheme = {
     dropdownBorderColor: "#ccc",
     dropdownItemBottomBorderColor: "#eee",
     listItemBackgroundColor: "rgba(255,255,255,0.05)",
+    modalConfirmButtonBackgroundColor: "#FF6600",
+    modalBackgroundColor: "#fff",
+    overlayBackgroundColor: "rgba(0, 0, 0, 0.5)",
+    modalShadowColor: "#000",
   },
   fonts: {
     regular: "Roboto-Regular", // Required ✅
@@ -33,6 +38,7 @@ export const lightTheme: UITheme = {
 export const darkTheme: UITheme = {
   colors: {
     text: "#f5f5f5",
+    text2: "#333",
     primary1: "#fff",
     primary2: "#800080",
     border: "#FEFCFF",
@@ -49,6 +55,10 @@ export const darkTheme: UITheme = {
     dropdownBorderColor: "#ccc",
     dropdownItemBottomBorderColor: "#eee",
     listItemBackgroundColor: "rgba(255,255,255,0.05)",
+    modalConfirmButtonBackgroundColor: "#FF6600",
+    modalBackgroundColor: "#fff",
+    overlayBackgroundColor: "rgba(0, 0, 0, 0.5)",
+    modalShadowColor: "#000",
   },
   fonts: {
     regular: "Roboto-Regular", // Required ✅
