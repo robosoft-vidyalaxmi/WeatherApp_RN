@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { weatherDescriptions } from "../constants/weatherDescriptions";
+import { weatherConditions } from "../constants/weatherDescriptions";
 import { weatherIcons } from "../constants/weatherIcons";
 import { WeatherData } from "../models/weather";
 import { WeatherHandler } from "../network/apiHandlers/weatherHandler";
@@ -30,11 +30,11 @@ export const useWeather = (latitude?: number, longitude?: number) => {
             t.startsWith(now)
           );
 
-          const description = weatherDescriptions[weather.weathercode];
+          const condition = weatherConditions[weather.weathercode];
 
           const weatherModel: WeatherData = {
             temperature: weather.temperature,
-            description,
+            condition: condition,
             icon: weatherIcons[weather.weathercode] ?? "cloud",
             windspeed: weather.windspeed,
             humidity: hourly.relative_humidity_2m[timeIndex],

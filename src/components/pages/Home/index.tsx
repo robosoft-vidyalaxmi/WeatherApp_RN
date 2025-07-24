@@ -3,7 +3,7 @@ import { useIsWeb } from "@/src/hooks/useIsWeb";
 import { useLocationAndWeatherInfo } from "@/src/hooks/useLocationAndWeather";
 import { useAppSelector } from "@/src/store/redux/store";
 import LinearGradientBaseView from "../../layouts/LinearGradientBaseView";
-import HomeTemplate from "../../templates/HomeTemplate";
+import LocationAndWeatherDataTemplate from "../../templates/LocationAndWeatherDataTemplate";
 
 const HomeScreenPage: React.FC = () => {
   const isWeb = useIsWeb();
@@ -15,13 +15,13 @@ const HomeScreenPage: React.FC = () => {
   const Content = (
     <>
       {!isWeb && <HomePageHeader />}
-      <HomeTemplate
+      <LocationAndWeatherDataTemplate
         location={location}
         weather={weather}
         loading={loading}
         error={error}
         isFavorite={isFavorite}
-        onToggleFavorite={toggleFavorite}
+        onToggleFavorite={() => toggleFavorite(weather)}
         temperatureUnit={unit}
       />
     </>

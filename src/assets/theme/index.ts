@@ -18,6 +18,7 @@ export const lightTheme: UITheme = {
     tabBarBackgroundColor: "#FFC0CB",
     dropdownBorderColor: "#ccc",
     dropdownItemBottomBorderColor: "#eee",
+    listItemBackgroundColor: "rgba(255,255,255,0.05)",
   },
   fonts: {
     regular: "Roboto-Regular", // Required ✅
@@ -47,6 +48,7 @@ export const darkTheme: UITheme = {
     tabBarBackgroundColor: "#FFC0CB",
     dropdownBorderColor: "#ccc",
     dropdownItemBottomBorderColor: "#eee",
+    listItemBackgroundColor: "rgba(255,255,255,0.05)",
   },
   fonts: {
     regular: "Roboto-Regular", // Required ✅

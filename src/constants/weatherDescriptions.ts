@@ -1,4 +1,4 @@
-export const weatherDescriptions: Record<number, string> = {
+export const weatherConditions: Record<number, string> = {
   0: "Clear sky",
   1: "Mainly clear",
   2: "Partly cloudy",

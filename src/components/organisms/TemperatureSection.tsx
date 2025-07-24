@@ -13,7 +13,7 @@ const TemperatureSection: React.FC<Props> = ({ weather, unit }) => {
     <TemperatureDetails
       iconName={weather.icon}
       temperature={weather.temperature}
-      description={weather.description}
+      description={weather.condition}
       unit={unit}
     />
   );

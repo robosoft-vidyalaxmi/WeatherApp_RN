@@ -25,7 +25,7 @@ interface Props {
   temperatureUnit: TemperatureUnit;
 }
 
-const HomeTemplate: React.FC<Props> = ({
+const LocationAndWeatherDataTemplate: React.FC<Props> = ({
   location,
   weather,
   loading,
@@ -67,4 +67,4 @@ const HomeTemplate: React.FC<Props> = ({
   );
 };
 
-export default HomeTemplate;
+export default LocationAndWeatherDataTemplate;

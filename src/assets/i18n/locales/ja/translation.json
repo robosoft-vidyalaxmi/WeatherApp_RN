@@ -10,5 +10,8 @@
   "precipitation": "Precipitation",
   "humidity": "Humidity",
   "wind": "Wind",
-  "visibility": "Visibility"
+  "visibility": "Visibility",
+  "favoritesCount_one": "{{count}} city added as favourite",
+  "favoritesCount_other": "{{count}} cities added as favourite",
+  "favorites.removeAll": "Remove All"
 }
