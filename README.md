@@ -10,7 +10,13 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    npm install
    ```
 
-2. Start the app
+2. Copy contents of .env.example file to .env.local
+
+   ```bash
+   cp .env.example .env.local
+   ```
+
+3. Start the app
 
    ```bash
    npx expo start
