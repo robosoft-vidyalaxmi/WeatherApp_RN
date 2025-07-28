@@ -8,7 +8,7 @@ import { useTheme } from "@emotion/react";
 import { Feather } from "@expo/vector-icons";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { FlatList, Pressable } from "react-native";
+import { ActivityIndicator, FlatList, Pressable } from "react-native";
 import {
   DropdownContainer,
   DropdownItem,
@@ -48,17 +48,21 @@ const SearchBar: React.FC = () => {
 
       {showDropdown && results.length > 0 && (
         <DropdownContainer>
-          <FlatList
-            data={results}
-            keyExtractor={(location) =>
-              `${location.latitude}-${location.longitude}-${location.city}`
-            }
-            renderItem={({ item }) => (
-              <Pressable onPress={() => handleCitySelect(item)}>
-                <DropdownItem>{getLocationName(item)}</DropdownItem>
-              </Pressable>
-            )}
-          />
+          {loading ? (
+            <ActivityIndicator size="large" color={theme.colors.activeText1} />
+          ) : (
+            <FlatList
+              data={results}
+              keyExtractor={(location) =>
+                `${location.latitude}-${location.longitude}-${location.city}`
+              }
+              renderItem={({ item }) => (
+                <Pressable onPress={() => handleCitySelect(item)}>
+                  <DropdownItem>{getLocationName(item)}</DropdownItem>
+                </Pressable>
+              )}
+            />
+          )}
         </DropdownContainer>
       )}
     </SearchWrapper>

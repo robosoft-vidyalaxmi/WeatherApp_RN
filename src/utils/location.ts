@@ -16,8 +16,6 @@ export const getLocationName = (location: LocationData): string => {
 export const mapToLocationData = (item: LocationResponse): LocationData | null => {
   const city = item.address?.city ?? item.address?.town ?? item.address?.village ?? item.address.district;
 
-  if (!city) return null; // skip items without city/town/village
-
   return {
     latitude: parseFloat(item.lat),
     longitude: parseFloat(item.lon),
